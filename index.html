@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smooth Animated Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.19/fullpage.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Base Styles */
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1E1E2F; /* Darker background */
+      color: #EAEAEA; /* Lighter text color for contrast */
+    }
+  
+    /* Navbar Styling */
+    nav {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      background: #2A2A40; /* Dark Purple */
+      padding: 15px 50px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      color: #FFFFFF; /* White for high contrast */
+      transition: box-shadow 0.3s ease;
+    }
+  
+    nav a {
+      color: #D9D9F3; /* Soft lavender */
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1rem;
+      text-transform: uppercase;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+  
+    nav a:hover {
+      color: #FFFFFF; /* Pure white on hover */
+      transform: scale(1.05);
+    }
+  
+    .section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      font-size: 2rem;
+      padding: 50px 0;
+      position: relative;
+    }
+    .subtitle1{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      font-size: 2rem;
+      padding: 50px 0;
+      position: relative;
+    }
+  
+    .section:nth-child(odd) {
+      background-color: #1E1E2F; /* Deep dark background for odd sections */
+    }
+  
+    .section:nth-child(even) {
+      background-color: #2E2E4F; /* Slightly lighter background for even sections */
+    }
+
+    .section1:nth-child(odd) {
+      background-color: #1E1E2F; /* Deep dark background for odd sections */
+    }
+  
+    .section1:nth-child(even) {
+      background-color: #2E2E4F; /* Slightly lighter background for even sections */
+    }
+  
+    .animated-text {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease-out;
+      background: linear-gradient(135deg, #62D3FF, #A271FF); /* Gradient from cyan to purple */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  
+    .fp-completely .animated-text {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    .subtitle {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease-out 0.5s;
+      color: #CCCCCC; /* Neutral light gray for subtitles */
+    }
+  
+    .fp-completely .subtitle {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 0 auto;
+      padding: 20px;
+      max-width: 90%;
+    }
+  
+    .card {
+      flex: 1 0 calc(25% - 20px);
+      max-width: calc(25% - 20px);
+      height: 180px;
+      padding: 15px;
+      background: #2E2E4F; /* Dark purple for cards */
+      border-radius: 8px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: #D9D9F3; /* Soft lavender text for cards */
+    }
+  
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.3), -8px -8px 15px rgba(255, 255, 255, 0.2);
+    }
+  
+    .card h3 {
+      margin: 0;
+      font-size: 1rem;
+      background: linear-gradient(135deg, #FFC062, #FF7EB3); /* Gradient from peach to pink */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  
+    .card p {
+      font-size: 0.8rem;
+      color: #EAEAEA; /* Light gray for paragraph text */
+      text-align: justify;
+      margin: 0;
+      line-height: 1.4;
+    }
+  
+    .project-description {
+      font-size: 0.9rem;
+      text-align: justify;
+      max-width: 600px;
+      margin: 20px auto;
+      line-height: 1.6;
+      color: #EAEAEA; /* Same light gray for descriptions */
+      background: #2A2A40; /* Dark purple */
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3), -6px -6px 15px rgba(255, 255, 255, 0.1);
+    }
+  
+    .project-phases {
+      font-size: 0.9rem;
+      text-align: justify;
+      max-width: 600px;
+      margin: 20px auto;
+      line-height: 1.6;
+      color: #EAEAEA;
+      background: #2A2A40;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3), -6px -6px 15px rgba(255, 255, 255, 0.1);
+      list-style-type: disc;
+      padding-left: 30px;
+    }
+  
+    .project-phases li {
+      margin-bottom: 10px;
+    }
+  
+    .learn-more-link {
+      display: inline-block;
+      margin-top: 15px;
+      font-size: 1rem;
+      text-decoration: none;
+      color: #4CAF50; /* Green accent */
+      background: transparent;
+      padding: 8px 15px;
+      border: 1px solid #4CAF50;
+      border-radius: 4px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+  
+    .learn-more-link:hover {
+      background: #4CAF50;
+      color: #fff;
+    }
+  </style>
+  
+</head>
+<body>
+  <!-- <div class="background">
+    <div class="bubble" style="width: 50px; height: 50px; left: 10%; animation-duration: 12s;"></div>
+    <div class="bubble" style="width: 30px; height: 30px; left: 25%; animation-duration: 15s;"></div>
+    <div class="bubble" style="width: 70px; height: 70px; left: 50%; animation-duration: 10s;"></div>
+    <div class="bubble" style="width: 40px; height: 40px; left: 75%; animation-duration: 8s;"></div>
+    <div class="bubble" style="width: 60px; height: 60px; left: 90%; animation-duration: 14s;"></div>
+    </div> -->
+  <nav>
+    <div>
+      <a href="k.html">Home</a>
+      <a href="mm.html">About Project</a>
+      <a href="team.html">Team Details</a>
+    </div>
+  </nav>
+
+  <div id="fullpage">
+    <!-- First Section: Left to Right -->
+    <div class="section left-to-right">
+      <h1 class="animated-text">Design and Analysis of Algorithms</h1>
+      <p class="subtitle">Name: Sanjana Shetti  </p>
+      <p class="subtitle">USN: 01fe23bcs057</p>
+    </div>
+
+    <!-- Second Section: Right to Left -->
+    <div class="section right-to-left">
+      <h1 class="animated-text">Course Reflections</h1>
+      <p class="subtitle">We reflected on 11 key topics, grouped into meaningful clusters, to enhance our understanding.</p>
+      <div class="card-container">
+        <div class="card">
+          <h3>Problems in Nature:</h3>
+          <p>Nature reflects algorithmic concepts—seasons represent iteration, cabbage leaf growth models recursion, and ants retracing paths embody backtracking. These parallels highlight nature's connection to computational logic.</p>
+        </div>
+        <div class="card">
+          <h3>Space & Time Efficiency:</h3>
+          <p>Space complexity measures memory usage; time complexity evaluates task completion duration. Growth orders like O(1), O(n), and O(log n) help determine algorithm efficiency for varying inputs.</p>
+        </div>
+        <div class="card">
+          <h3>Design Principles:</h3>
+          <p>Balanced structures (AVL, Red-Black trees) enhance efficiency. Graph traversal (DFS/BFS) solves diverse problems, while sorting (Merge/Quick Sort) highlights algorithm adaptability.</p>
+        </div>
+        <div class="card">
+          <h3>Hierarchical Data Structures:</h3>
+          <p> Trees (BST, AVL, Trie) optimize search and storage; Red-Black trees ensure balance. Traversals like DFS/BFS aid systematic problem-solving.</p>
+        </div>
+        <div class="card">
+          <h3>Array Query Algorithms:</h3>
+          <p>Efficient tools like segment trees, BIT, and lookup tables enable fast queries for e-commerce, stock analysis, and real-time applications.</p>
+        </div>
+        <div class="card">
+          <h3>Trees vs. Graphs:</h3>
+          <p>Trees are hierarchical, connected, and acyclic. Graphs are versatile with cycles and disconnections. Traversals (Pre/In/Post-order for trees, DFS/BFS for graphs) serve various applications.</p>
+        </div>
+        <div class="card">
+          <h3>Sorting & Searching:</h3>
+          <p>Sorting (e.g., Bubble, Quick, Merge) organizes data for databases or e-commerce. Searching (e.g., hash-based) speeds up file and data retrieval.</p>
+        </div>
+        <div class="card">
+          <h3>Graph Algorithms:</h3>
+          <p>Spanning tree algorithms (Kruskal, Prim) optimize infrastructure costs. Shortest path algorithms (Dijkstra, Floyd-Warshall) are critical for navigation and networking.</p>
+        </div>
+        <div class="card">
+          <h3>Algorithm Design Techniques:</h3>
+          <p>Backtracking (N-Queens), divide-and-conquer (Merge/Quick Sort), brute force, and specialized algorithms like KMP and Dijkstra solve diverse problems efficiently.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Section: Right to Left -->
+    <!-- <div class="section right-to-left">
+      <h1 class="animated-text">About The Course</h1>
+      <p class="subtitle">We explored various topics grouped into five key clusters:</p>
+      <div class="card-container">
+        <div class="card">
+          <h3>Foundations</h3>
+          <p>Covered the basics of algorithm design, including space and time complexities, recursion, iteration, and backtracking.</p>
+        </div>
+        <div class="card">
+          <h3>Principles</h3>
+          <p>such as edge relaxation, and traversals, along with tools like prefix/suffix techniques, and hashing.</p>
+        </div>
+        <div class="card">
+          <h3>Structured Data</h3>
+          <p>Focused on advanced DS like AVL Trees, Red-Black Trees, and segment trees, BFS, DFS, and array queries.</p>
+        </div>
+        <div class="card">
+          <h3>Sorting</h3>
+          <p> sExplored sorting and searching techniques and their underlying devices.</p>
+        </div>
+        <div class="card">
+          <h3>Graph Algorithms</h3>
+          <p>Studied graph-based algorithms for finding shortest paths and spanning trees.</p>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Third Section: Left to Right -->
+    <div class="section left-to-right">
+      <a href="mm.html">
+        <h1 class="animated-text">Course Project</h1>
+      </a>
+      <p class="project-description">
+        The VAYUJIVA project envisions transforming the city into a model smart city by integrating advanced technologies and sustainable practices. Implemented in multiple phases, it aims to address critical aspects of urban development, including housing, public services, technological infrastructure, and environmental sustainability.
+      </p>
+      <ul class="project-phases">
+        <li><strong>Phase 1 (2025-2030):</strong> Establishing residential zones, enhancing government services, and deploying smart technologies such as IoT and AI for efficient governance and water conservation.</li>
+        <li><strong>Phase 2 (2030-2035):</strong> Expanding residential areas, health, and educational facilities, while incorporating renewable energy solutions and advanced waste management systems.</li>
+        <li><strong>Phase 3 (2035-2040):</strong> Developing cultural, recreational spaces, and integrating comprehensive smart transportation systems to ensure mobility and connectivity.</li>
+      </ul>
+      <a href="https://drive.google.com/file/d/1q50g-n7H96LFq5QQTr_IJ8BGt4wkunnG/view?usp=sharing" class="learn-more-link">Learn More</a>
+    </div>
+
+    <!-- Fourth Section: Right to Left -->
+    <div class="section right-to-left">
+      <h1 class="animated-text">Reference Textbooks</h1>
+      <div class="card-container">
+        <div class="card">
+          <img src="itl.jpg" alt="Introduction to Algorithms - Third Edition" style="width: 100%; border-radius: 8px;">
+          <h3>Introduction to Algorithms</h3>
+          <p>Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein - Third Edition</p>
+        </div>
+        <div class="card">
+          <img src="itl4.jpg" alt="Introduction to Algorithms - Fourth Edition" style="width: 100%; border-radius: 8px;">
+          <h3>Introduction to Algorithms</h3>
+          <p>Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein - Fourth Edition</p>
+        </div>
+        <div class="card">
+          <img src="daa.jpg" alt="Introduction to the Design and Analysis of Algorithms" style="width: 100%; border-radius: 8px;">
+          <h3>Introduction to the Design and Analysis of Algorithms</h3>
+          <p>Anany Levitin - Second Edition</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section left-to-right">
+      <h1 class="animated-text">Course Instructor</h1>
+      <h3 class="subtitle1">Arundhati Aralimatti</h3>
+    </div>
+    
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.19/fullpage.min.js"></script>
+  <script>
+    new fullpage('#fullpage', {
+      scrollBar: false,
+      navigation: true,
+      navigationPosition: 'right',
+      navigationTooltips: ['Welcome', 'About', 'Portfolio', 'Contact'],
+      scrollingSpeed: 700,
+      onLeave: function(origin, destination, direction) {
+        console.log("Leaving section " + origin.index);
+      },
+      afterLoad: function(origin, destination, direction) {
+        console.log("Loaded section " + destination.index);
+      },
+    });
+  </script>
+</body>
+</html>

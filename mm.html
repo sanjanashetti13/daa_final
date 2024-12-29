@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algorithms Lab - Course Project Phase III</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1E1E2F; /* Dark background */
+      color: #EAEAEA; /* Light text for better contrast */
+      transition: background-color 0.3s ease;
+    }
+  
+    /* Navbar Styling */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2A2A40; /* Dark Purple */
+      padding: 15px 50px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      transition: box-shadow 0.3s ease;
+    }
+  
+    nav a {
+      color: #D9D9F3; /* Soft lavender */
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1rem;
+      text-transform: uppercase;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+  
+    nav a:hover {
+      color: #FFFFFF; /* Pure white on hover */
+      transform: scale(1.05);
+    }
+  
+    .container {
+      max-width: 1200px;
+      margin: 100px auto;
+      padding: 30px;
+      background: #2E2E4F; /* Dark purple */
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+    }
+  
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2.5rem;
+      color: #EAEAEA; /* Light text color */
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+  
+    .tab-container {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #444; /* Neutral divider */
+    }
+  
+    .tab {
+      padding: 12px 25px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: #D9D9F3; /* Soft lavender */
+      text-transform: uppercase;
+      font-weight: bold;
+      border: none;
+      background: none;
+      outline: none;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+  
+    .tab.active {
+      color: #FFFFFF; /* White for active tab */
+      background: #2A2A40; /* Slightly darker background for the active tab */
+      border-radius: 10px 10px 0 0;
+    }
+  
+    .tab:hover {
+      background-color: #444; /* Neutral hover effect */
+      border-radius: 10px 10px 0 0;
+    }
+  
+    .content-section {
+      display: none;
+      padding: 20px;
+      transition: opacity 0.3s ease;
+    }
+  
+    .content-section.active {
+      display: block;
+      opacity: 1;
+    }
+  
+    ul {
+      padding-left: 20px;
+    }
+  
+    ul li {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      color: #CCCCCC; /* Neutral gray text */
+    }
+  
+    /* Enhanced Table Styles */
+    .team-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      animation: fadeIn 1s ease-out;
+    }
+  
+    .team-table th, .team-table td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #444; /* Neutral gray border */
+      opacity: 0;
+      animation: fadeInRows 0.5s ease-out forwards;
+    }
+  
+    .team-table th {
+      background: linear-gradient(145deg, #2A2A40, #343F50); /* Gradient dark purple tones */
+      color: #FFFFFF; /* White text for headers */
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
+  
+    .team-table td {
+      background-color: #333; /* Slightly lighter than the container */
+      color: #CCCCCC; /* Neutral gray text */
+      font-size: 1rem;
+    }
+  
+    .team-table tr:nth-child(even) td {
+      background-color: #444; /* Alternating lighter row */
+    }
+  
+    .team-table tr:hover td {
+      background-color: #555; /* Highlight row on hover */
+      transition: background-color 0.3s ease;
+    }
+  
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  
+    @keyframes fadeInRows {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  
+    .team-table tr:nth-child(1) td {
+      animation-delay: 0s;
+    }
+  
+    .team-table tr:nth-child(2) td {
+      animation-delay: 0.2s;
+    }
+  
+    .team-table tr:nth-child(3) td {
+      animation-delay: 0.4s;
+    }
+  
+    .team-table tr:nth-child(4) td {
+      animation-delay: 0.6s;
+    }
+  
+    .team-table tr:nth-child(5) td {
+      animation-delay: 0.8s;
+    }
+  
+    .team-table tr:nth-child(6) td {
+      animation-delay: 1s;
+    }
+  
+    /* Link Styling */
+    a {
+      color: inherit; /* Inherits the text color from parent */
+      text-decoration: none; /* No underline or decoration */
+    }
+  
+    a:hover {
+      color: inherit; /* Keeps hover color the same */
+      transform: none; /* Prevents hover animations */
+      text-decoration: none; /* No underline or decoration on hover */
+    }
+  
+    /* Know More Button */
+    .know-more-btn {
+      padding: 10px 20px;
+      background-color: #2A2A40; /* Dark purple */
+      color: #FFFFFF; /* White text */
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: background-color 0.3s ease;
+    }
+  
+    .know-more-btn:hover {
+      background-color: #343F50; /* Slightly lighter on hover */
+    }
+  </style>
+  
+  <script>
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab');
+      const sections = document.querySelectorAll('.content-section');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelector(`.tab[data-target="${tabId}"]`).classList.add('active');
+    }
+  </script>
+</head>
+<body>
+  <nav>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="mm.html">About Project</a>
+      <a href="team.html">Team Details</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Course Project</h1>
+
+    <div class="tab-container">
+      <button class="tab active" data-target="problem-statement" onclick="showTab('problem-statement')">Problem Statement</button>
+      <button class="tab" data-target="business-cases" onclick="showTab('business-cases')">Business Cases</button>
+      <button class="tab" data-target="city-plan" onclick="showTab('city-plan')">City Plan</button>
+      <button class="tab" data-target="sdg-rules" onclick="showTab('sdg-rules')">SDG Rules</button>
+    </div>
+
+    <div id="problem-statement" class="content-section active">
+      <h2>Problem Statement: Traffic Management</h2>
+      <p align="justify">
+        Urban mobility is adversely imp acted by persistent challenges such as traffic congestion, insufficient parking infrastructure, and delayed emergency response times. These inefficiencies not only disrupt daily commuting but also negatively affect economic productivity and the effectiveness of critical services. The development of an integrated and intelligent system capable of dynamically managing traffic, optimizing parking solutions, and prioritizing emergency response operations is imperative to enhance urban efficiency and improve the overall quality of life for residents.
+      </p>
+    </div>
+
+    <div id="business-cases" class="content-section">
+      <h2>Business Cases Identification</h2>
+      <table class="team-table">
+  <thead>
+    <tr>
+      <th>Sl. No.</th>
+      <th>Business Case</th>
+      <th>Description</th>
+      <th>Owner</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><a href="real-time-traffic.html">Real-time Traffic Monitoring</a></td>
+      <td>Collect, process, and store traffic data in real-time using IoT devices and sensors.</td>
+      <td>Ananya B P</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><a href="citizen-feedback.html">Citizen Feedback Processing</a></td>
+      <td>Collect, analyze, and act on citizen feedback regarding traffic issues.</td>
+      <td>Ria</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><a href="smart-traffic.html">Smart Traffic Signal Control</a></td>
+      <td>Dynamically adjust signal timings based on traffic flow and congestion.</td>
+      <td>Sanjana</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><a href="smart-parking.html">Smart Parking Systems</a></td>
+      <td>Use Trie to store and search for parking space availability in real time, providing instant updates.</td>
+      <td>Chinmayi K B</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><a href="emergency-routing.html">Emergency Vehicle Routing</a></td>
+      <td>Implement a 2-3 Tree to handle route optimization for emergency vehicles, ensuring minimal delay.</td>
+      <td>Ria and Sanjana</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><a href="ev-management.html">EV Charging Station Management</a></td>
+      <td>Locate and manage EV charging stations in the city.</td>
+      <td>Ananya and Chinmayi</td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+
+    <div id="city-plan" class="content-section">
+      <h2>City Plan</h2>
+      <img src="vayujiva.jpg" alt="City Plan Visualization" style="max-width: 100%; height: auto; margin-top: 15px; border-radius: 10px;">
+    </div>
+
+    <div id="sdg-rules" class="content-section">
+  <h2>SDG Rules</h2>
+  <p align="justify">
+    The Sustainable Development Goals (SDGs) play a vital role in guiding the implementation of traffic management solutions. Each business case aligns with specific SDGs to promote sustainable urban development and efficient mobility solutions. Below are the SDGs associated with each business case:
+  </p>
+  <ul>
+    <li><strong>Real-time Traffic Monitoring:</strong>
+      <ul>
+        <li><strong>SDG 9 - Industry, Innovation, and Infrastructure:</strong> Utilize data collected to improve infrastructure planning and maintenance, optimizing traffic flow and reducing congestion.</li>
+        <li><strong>SDG 11 - Sustainable Cities and Communities:</strong> Leverage data to identify and address traffic hotspots, improve road safety, and enhance urban mobility.</li>
+      </ul>
+    </li>
+    <li><strong>Citizen Feedback Processing:</strong>
+      <ul>
+        <li><strong>SDG 11 - Sustainable Cities and Communities:</strong> Establish transparent and accessible channels for citizen feedback, ensuring their voices are heard in decision-making processes related to traffic management.</li>
+        <li><strong>SDG 16 - Peace, Justice, and Strong Institutions:</strong> Promote participatory governance and ensure accountability in addressing citizen concerns.</li>
+      </ul>
+    </li>
+    <li><strong>Smart Traffic Signal Control:</strong>
+      <ul>
+        <li><strong>SDG 11 - Sustainable Cities and Communities:</strong> Optimize traffic signal timings to reduce congestion, improve fuel efficiency, and minimize emissions, contributing to cleaner air quality.</li>
+        <li><strong>SDG 7 - Affordable and Clean Energy:</strong> Promote energy-efficient transportation systems through optimized traffic flow.</li>
+      </ul>
+    </li>
+    <li><strong>Smart Parking Systems:</strong>
+      <ul>
+        <li><strong>SDG 11 - Sustainable Cities and Communities:</strong> Reduce traffic congestion and pollution by facilitating efficient parking management and encouraging the use of alternative modes of transport.</li>
+        <li><strong>SDG 12 - Responsible Consumption and Production:</strong> Minimize the environmental impact of parking by optimizing parking space utilization and reducing the need for excessive car ownership.</li>
+      </ul>
+    </li>
+    <li><strong>Emergency Vehicle Routing:</strong>
+      <ul>
+        <li><strong>SDG 3 - Good Health and Well-being:</strong> Ensure timely response to emergencies by optimizing routes for emergency vehicles, saving lives and minimizing suffering.</li>
+        <li><strong>SDG 11 - Sustainable Cities and Communities:</strong> Improve the efficiency and effectiveness of emergency services, enhancing the resilience of urban areas.</li>
+      </ul>
+    </li>
+    <li><strong>EV Charging Station Management:</strong>
+      <ul>
+        <li><strong>SDG 7 - Affordable and Clean Energy:</strong> Promote the adoption of electric vehicles by expanding the network of charging stations and ensuring their accessibility and reliability.</li>
+        <li><strong>SDG 13 - Climate Action:</strong> Contribute to the mitigation of climate change by supporting the transition to electric vehicles.</li>
+      </ul>
+    </li>
+  </ul>
+  <p align="justify">
+    These SDGs provide a comprehensive framework for addressing urban traffic challenges sustainably, ensuring alignment with global goals for sustainable development.
+  </p>
+  <!-- Know More Button -->
+  
+</div>
+
+
+  </div>
+</body>
+</html>
+
+
+

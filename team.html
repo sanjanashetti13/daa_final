@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Details - Water Scarcity Management</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1E1E2F; /* Darker background */
+      color: #EAEAEA; /* Lighter text color for contrast */
+    }
+
+    /* Navbar Styling */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2A2A40; /* Dark Purple */
+      padding: 15px 50px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #D9D9F3; /* Soft lavender */
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1rem;
+      text-transform: uppercase;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #FFFFFF; /* Pure white on hover */
+      transform: scale(1.05);
+    }
+
+    header {
+      background-color: #2E2E4F; /* Dark Purple */
+      padding: 20px;
+      text-align: center;
+      color: #EAEAEA;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      margin-top: 70px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      text-transform: uppercase;
+      color: #CCCCCC; /* Neutral light gray */
+      letter-spacing: 3px;
+    }
+
+    .team-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 40px 20px;
+      background-color: #2A2A40; /* Dark Purple */
+      margin-top: 60px;
+    }
+
+    .team-member {
+      background-color: #2A2A40; /* Slightly lighter than the container */
+      margin: 15px;
+      padding: 10px;
+      border-radius: 12px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 420px;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.8);
+    }
+
+    .team-member img {
+      width: 150px; /* Larger size for the image */
+      height: 150px; /* Ensures square shape */
+      object-fit: cover; /* Fits image properly within the square */
+      border-radius: 50%; /* Circular shape */
+      border: 5px solid #888; /* Keeps a border */
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+
+    .team-member:hover img {
+      transform: scale(1.1);
+    }
+
+    .team-member h2 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: #AAAAAA; /* Neutral gray for name */
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .team-member p {
+      font-size: 0.8rem;
+      color: #CCCCCC; /* Neutral light gray for description */
+      margin-bottom: 10px;
+      flex-grow: 1;
+    }
+
+    .team-member .role {
+      font-weight: bold;
+      color: #D9D9F3; /* Soft lavender for roles */
+    }
+
+    footer {
+      background-color: #2A2A40; /* Dark Purple */
+      color: #BBBBBB; /* Lighter gray */
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      margin-top: 50px;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Animation Delays for Team Members */
+    .team-member:nth-child(1) {
+      animation-delay: 0.1s;
+    }
+
+    .team-member:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .team-member:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    .team-member:nth-child(4) {
+      animation-delay: 0.4s;
+    }
+    a{
+      text-decoration: none;
+      color: #AAAAAA;
+    }
+</style>
+
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="mm.html">About Project</a>
+      <a href="team.html">Team Details</a>
+    </div>
+  </nav>
+
+  <!-- Header Section -->
+  <header>
+    <h1>Meet Our Team</h1>
+  </header>
+
+  <!-- Team Details Section -->
+  <div id="team" class="team-container">
+    <div class="team-member">
+      <img src="sanjana.jpg" >
+      <h2><a href="sanjana.html">Sanjana Shetti</a></h2>
+      <p class="role">
+        - Leads the Smart Traffic Signal Control module, utilizing Heap, AVL Tree, BFS, and Binary Search Tree. <br><br>
+- Also contributes to Emergency Vehicle Routing in collaboration with Ria.
+
+        </p>
+    </div>
+
+    <div class="team-member">
+      <img src="ria2.jpg" >
+      <h2><a href="https://varunterdal.github.io/KWIN.github.io/">Ria Javalagi</a></h2>
+      <p class="role">- Handles Citizen Feedback Processing, employing Brute Force String Search, Rabin-Karp, and Lookup Table techniques. <br><br>
+        -Also contributes to Emergency Vehicle Routing in collaboration with Sanjana.
+        </p>
+    </div>
+
+    <div class="team-member">
+      <img src="chinmayi.jpg" >
+      <h2><a href="">Chinmayi K B</a></h2>
+      <p class="role">- Responsible for Smart Parking Systems, utilizing Trie and Queue data structures. <br><br>
+        -Also contributes to EV Charging Station Management in collaboration with Ananya.</p>
+    </div>
+
+    <div class="team-member">
+      <img src="ananya.jpg" >
+      <h2><a href="">Ananya B P</a></h2>
+      <p class="role">- Responsible for Real-time Traffic Monitoring, leveraging Arrays, Hashing, and Sparse Tables. <br><br>
+        - Also responsible for EV Charging Station Management, utilizing Binary Search Trees, Tries, and Arrays.</p>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2024 Traffic Management</p>
+  </footer>
+</body>
+</html>

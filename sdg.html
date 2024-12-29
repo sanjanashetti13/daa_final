@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDGs Overview</title>
+    <style>
+        /* General Body Styling */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #212121;
+            color: #ffffff;
+        }
+
+        /* Top Navigation Bar Styling */
+        .top-nav {
+            display: flex;
+            justify-content: flex-start; /* Align items to the left */
+            background-color: #000000;
+            padding: 15px 20px; /* Add horizontal padding for spacing */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .top-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px; /* Adjust spacing between links */
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Remove hover effect for the top navigation bar */
+        .top-nav a:hover {
+            color: #ffffff; /* Same color as default, so no change */
+        }
+
+        /* Sidebar Navigation Bar Styling */
+        .navbar {
+            width: 250px;
+            background-color: #000000;
+            height: 100vh;
+            position: fixed;
+            top: 60px; /* Space for the top navigation bar */
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            box-shadow: 4px 0 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 15px 20px;
+            margin: 5px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #4caf50;
+        }
+
+        .navbar a.active {
+            background-color: #4caf50;
+            color: #ffffff;
+        }
+
+        /* Main Content Area */
+        .content {
+            margin-left: 270px; /* Space for the sidebar navigation */
+            padding: 100px 20px 20px; /* Space for the top navigation bar */
+        }
+
+        h1 {
+            text-align: left;
+            color: #e0e0e0;
+        }
+
+        .sdg-section {
+            margin-bottom: 40px;
+            scroll-margin-top: 80px; /* Prevent content from being hidden */
+        }
+
+        .sdg-section h2 {
+            color: #4caf50;
+            margin-bottom: 10px;
+        }
+
+        .sdg-section ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        .sdg-section ul li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <div class="top-nav">
+        <a href="index.html">HOME</a>
+        <a href="mm.html">ABOUT PROJECT</a>
+        <a href="team.html">TEAM DETAILS</a>
+    </div>
+
+    <!-- Sidebar Navigation Bar -->
+    <div class="navbar">
+        <a href="#sdg-6">SDG 6: Clean Water and Sanitation</a>
+        <a href="#sdg-7">SDG 7: Affordable Energy</a>
+        <a href="#sdg-8">SDG 8: Decent Work</a>
+        <a href="#sdg-11">SDG 11: Sustainable Cities</a>
+        <a href="#sdg-13">SDG 13: Climate Action</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1 id="home">Sustainable Development Goals (SDGs)</h1>
+
+        <!-- SDG 6 Section -->
+        <div id="sdg-6" class="sdg-section">
+            <h2>SDG 6: Clean Water and Sanitation</h2>
+            <p>Ensure availability and sustainable management of water and sanitation for all.</p>
+            <ul>
+                <li>6.1.1: Safe drinking water services</li>
+                <li>6.2.1: Managed sanitation services</li>
+                <li>6.3.1: Wastewater treatment</li>
+                <li>6.4.1: Water-use efficiency</li>
+                <li>6.5.1: Integrated water management</li>
+                <li>6.6.1: Ecosystem changes over time</li>
+            </ul>
+        </div>
+
+        <!-- SDG 7 Section -->
+        <div id="sdg-7" class="sdg-section">
+            <h2>SDG 7: Affordable and Clean Energy</h2>
+            <p>Ensure access to affordable, reliable, sustainable, and modern energy for all.</p>
+            <ul>
+                <li>7.1.1: Access to electricity</li>
+                <li>7.2.1: Renewable energy share</li>
+                <li>7.3.1: Energy efficiency improvements</li>
+            </ul>
+        </div>
+
+        <!-- SDG 8 Section -->
+        <div id="sdg-8" class="sdg-section">
+            <h2>SDG 8: Decent Work and Economic Growth</h2>
+            <p>Promote sustained, inclusive, and sustainable economic growth, full and productive employment, and decent work for all.</p>
+            <ul>
+                <li>8.1.1: GDP growth per capita</li>
+                <li>8.3.1: Informal employment</li>
+                <li>8.5.1: Unemployment rates</li>
+                <li>8.7.1: Child labor</li>
+                <li>8.8.1: Safe work environments</li>
+            </ul>
+        </div>
+
+        <!-- SDG 11 Section -->
+        <div id="sdg-11" class="sdg-section">
+            <h2>SDG 11: Sustainable Cities and Communities</h2>
+            <p>Make cities and human settlements inclusive, safe, resilient, and sustainable.</p>
+            <ul>
+                <li>11.1.1: Access to adequate housing</li>
+                <li>11.2.1: Sustainable transport systems</li>
+                <li>11.3.1: Urban land use</li>
+                <li>11.6.1: Environmental impact of cities</li>
+                <li>11.7.1: Access to green spaces</li>
+            </ul>
+        </div>
+
+        <!-- SDG 13 Section -->
+        <div id="sdg-13" class="sdg-section">
+            <h2>SDG 13: Climate Action</h2>
+            <p>Take urgent action to combat climate change and its impacts.</p>
+            <ul>
+                <li>13.1.1: Resilience to climate hazards</li>
+                <li>13.2.1: Integration of climate measures into policies</li>
+                <li>13.3.1: Climate education and awareness</li>
+            </ul>
+        </div>
+
+
+        </div>
+    </div>
+</body>
+</html>
