@@ -255,6 +255,8 @@
       <button class="tab" data-target="business-cases" onclick="showTab('business-cases')">Business Cases</button>
       <button class="tab" data-target="city-plan" onclick="showTab('city-plan')">City Plan</button>
       <button class="tab" data-target="sdg-rules" onclick="showTab('sdg-rules')">SDG Rules</button>
+      <button class="tab" data-target="implementation" onclick="showTab('implementation')">implementation</button>
+
     </div>
 
     <div id="problem-statement" class="content-section active">
@@ -369,6 +371,287 @@
   </p>
   <!-- Know More Button -->
    </div>
+   <div id="implementation" class="content-section active">
+    <h2>Using AVL tree and BST</h2>
+    <p align="justify">
+        <p>
+            &lt;#include &lt;iostream&gt;<br>
+            #include &lt;queue&gt;<br>
+            #include &lt;map&gt;<br>
+            #include &lt;vector&gt;<br>
+            #include &lt;string&gt;<br>
+            #include &lt;cmath&gt;<br>
+            #include &lt;algorithm&gt; // For find<br>
+            using namespace std;<br><br>
+            
+            &lt;!-- AVL Tree Node structure --&gt;<br>
+            struct AVLNode {<br>
+                string key;        // Direction (N, S, E, W)<br>
+                int value;         // Traffic Density<br>
+                AVLNode* left;<br>
+                AVLNode* right;<br>
+                int height;<br><br>
+            
+                AVLNode(string k, int v) : key(k), value(v), left(nullptr), right(nullptr), height(1) {}<br>
+            };<br><br>
+            
+            &lt;!-- AVL Tree Class --&gt;<br>
+            class AVLTree {<br>
+            public:<br>
+                AVLNode* root;<br><br>
+            
+                AVLTree() : root(nullptr) {}<br><br>
+            
+                &lt;!-- Function to insert a node with a given key-value pair --&gt;<br>
+                void insert(string key, int value) {<br>
+                    root = insertNode(root, key, value);<br>
+                }<br><br>
+            
+                &lt;!-- Function to update the value associated with a key --&gt;<br>
+                void update(string key, int value) {<br>
+                    root = updateNode(root, key, value);<br>
+                }<br><br>
+            
+                &lt;!-- Function to search for a node by key --&gt;<br>
+                int search(string key) {<br>
+                    AVLNode* node = searchNode(root, key);<br>
+                    return node ? node->value : -1; // Return -1 if key not found<br>
+                }<br><br>
+            
+            private:<br>
+                &lt;!-- Insert a node while maintaining balance of the AVL tree --&gt;<br>
+                AVLNode* insertNode(AVLNode* node, string key, int value) {<br>
+                    if (!node) return new AVLNode(key, value);<br>
+                    if (key &lt; node->key) {<br>
+                        node->left = insertNode(node->left, key, value);<br>
+                    } else if (key &gt; node->key) {<br>
+                        node->right = insertNode(node->right, key, value);<br>
+                    } else {<br>
+                        return node; // Duplicate key, no insertion<br>
+                    }<br><br>
+            
+                    // Update height of the current node<br>
+                    node->height = 1 + max(getHeight(node->left), getHeight(node->right));<br><br>
+            
+                    // Balance the node<br>
+                    return balance(node);<br>
+                }<br><br>
+            
+                &lt;!-- Update the value associated with a key and rebalance --&gt;<br>
+                AVLNode* updateNode(AVLNode* node, string key, int value) {<br>
+                    if (!node) return node;<br><br>
+            
+                    if (key &lt; node->key) {<br>
+                        node->left = updateNode(node->left, key, value);<br>
+                    } else if (key &gt; node->key) {<br>
+                        node->right = updateNode(node->right, key, value);<br>
+                    } else {<br>
+                        node->value = value; // Update the value<br>
+                        return node;<br>
+                    }<br><br>
+            
+                    // Update height of the current node<br>
+                    node->height = 1 + max(getHeight(node->left), getHeight(node->right));<br><br>
+            
+                    // Balance the node<br>
+                    return balance(node);<br>
+                }<br><br>
+            
+                &lt;!-- Search for a node by key --&gt;<br>
+                AVLNode* searchNode(AVLNode* node, string key) {<br>
+                    if (!node || node->key == key) return node;<br><br>
+            
+                    if (key &lt; node->key) return searchNode(node->left, key);<br>
+                    return searchNode(node->right, key);<br>
+                }<br><br>
+            
+                &lt;!-- Get the height of the node --&gt;<br>
+                int getHeight(AVLNode* node) {<br>
+                    return node ? node->height : 0;<br>
+                }<br><br>
+            
+                &lt;!-- Get the balance factor of the node --&gt;<br>
+                int getBalance(AVLNode* node) {<br>
+                    return node ? getHeight(node->left) - getHeight(node->right) : 0;<br>
+                }<br><br>
+            
+                &lt;!-- Perform a right rotation --&gt;<br>
+                AVLNode* rightRotate(AVLNode* y) {<br>
+                    AVLNode* x = y->left;<br>
+                    AVLNode* T2 = x->right;<br><br>
+            
+                    // Perform rotation<br>
+                    x->right = y;<br>
+                    y->left = T2;<br><br>
+            
+                    // Update heights<br>
+                    y->height = max(getHeight(y->left), getHeight(y->right)) + 1;<br>
+                    x->height = max(getHeight(x->left), getHeight(x->right)) + 1;<br><br>
+            
+                    return x; // New root<br>
+                }<br><br>
+            
+                &lt;!-- Perform a left rotation --&gt;<br>
+                AVLNode* leftRotate(AVLNode* x) {<br>
+                    AVLNode* y = x->right;<br>
+                    AVLNode* T2 = y->left;<br><br>
+            
+                    // Perform rotation<br>
+                    y->left = x;<br>
+                    x->right = T2;<br><br>
+            
+                    // Update heights<br>
+                    x->height = max(getHeight(x->left), getHeight(x->right)) + 1;<br>
+                    y->height = max(getHeight(y->left), getHeight(y->right)) + 1;<br><br>
+            
+                    return y; // New root<br>
+                }<br><br>
+            
+                &lt;!-- Balance the node --&gt;<br>
+                AVLNode* balance(AVLNode* node) {<br>
+                    int balanceFactor = getBalance(node);<br><br>
+            
+                    // Left heavy<br>
+                    if (balanceFactor &gt; 1) {<br>
+                        if (getBalance(node->left) &lt; 0) {<br>
+                            node->left = leftRotate(node->left);<br>
+                        }<br>
+                        return rightRotate(node);<br>
+                    }<br><br>
+            
+                    // Right heavy<br>
+                    if (balanceFactor &lt; -1) {<br>
+                        if (getBalance(node->right) &gt; 0) {<br>
+                            node->right = rightRotate(node->right);<br>
+                        }<br>
+                        return leftRotate(node);<br>
+                    }<br><br>
+            
+                    return node; // No balancing needed<br>
+                }<br>
+            };<br><br>
+            
+            &lt;!-- Function to take user input for traffic density and update the AVL Tree --&gt;<br>
+            void updateTrafficDensity(AVLTree& avlTree) {<br>
+                cout << "Enter traffic density for each direction (N, S, E, W):" << endl;<br>
+                string direction;<br>
+                int density;<br><br>
+            
+                for (const string& dir : {"N", "S", "E", "W"}) {<br>
+                    cout << dir << ": ";<br>
+                    cin >> density;<br>
+                    avlTree.update(dir, density);<br>
+                }<br>
+            }<br><br>
+            
+            &lt;!-- Function to take input for emergency vehicles and give priority --&gt;<br>
+            void updateEmergencyVehicles(AVLTree& avlTree, map&lt;string, bool&gt;&amp; emergencyVehicles) {<br>
+                cout << "\nEnter the presence of emergency vehicles at each direction (Y/N):" << endl;<br>
+                string direction;<br>
+                char presence;<br><br>
+            
+                for (const string& dir : {"N", "S", "E", "W"}) {<br>
+                    cout << dir << ": ";<br>
+                    cin >> presence;<br>
+                    emergencyVehicles[dir] = (presence == 'Y' || presence == 'y');<br>
+                }<br>
+            }<br><br>
+            
+            &lt;!-- Function to dynamically calculate signal timings based on traffic density and emergency vehicles --&gt;<br>
+            map&lt;string, int&gt; calculateSignalTimings(AVLTree& avlTree, map&lt;string, bool&gt;&amp; emergencyVehicles) {<br>
+                vector&lt;pair&lt;int, string&gt;&gt; directionsWithPriority;<br>
+                vector&lt;string&gt; directions = {"N", "S", "E", "W"};<br><br>
+            
+                // Insert values from AVL tree into the directionsWithPriority vector<br>
+                for (const string& direction : directions) {<br>
+                    int density = avlTree.search(direction);<br><br>
+            
+                    // If emergency vehicle is present, increase the traffic density to prioritize it<br>
+                    if (emergencyVehicles[direction]) {<br>
+                        density += 50;  // Add extra time for emergency vehicles<br>
+                    }<br>
+            
+                    directionsWithPriority.push_back({density, direction});<br>
+                }<br><br>
+            
+                // Sort the directions based on density and presence of emergency vehicles<br>
+                sort(directionsWithPriority.begin(), directionsWithPriority.end(), greater&lt;&gt;());<br><br>
+            
+                // Map to store the final signal timings<br>
+                map&lt;string, int&gt; signalTimings;<br>
+                int baseTime = 30;<br><br>
+            
+                // Calculate the timings for each direction after sorting<br>
+                for (const auto&amp; directionPair : directionsWithPriority) {<br>
+                    int density = directionPair.first;<br>
+                    string direction = directionPair.second;<br>
+                    int timing = baseTime + (density / 10);<br>
+                    signalTimings[direction] = timing;<br>
+                }<br><br>
+            
+                return signalTimings;<br>
+            }<br><br>
+            
+            &lt;!-- BFS to find shortest path for emergency vehicle routing --&gt;<br>
+            vector&lt;string&gt; bfsShortestPath(const string&amp; start, const string&amp; end, map&lt;string, vector&lt;string&gt;&gt;&amp; graph) {<br>
+                queue&lt;pair&lt;string, vector&lt;string&gt;&gt;&gt; q;<br>
+                q.push({start, {start}});<br><br>
+            
+                while (!q.empty()) {<br>
+                    auto nodePathPair = q.front();<br>
+                    q.pop();<br>
+                    string node = nodePathPair.first;<br>
+                    vector&lt;string&gt; path = nodePathPair.second;<br><br>
+            
+                    if (node == end) return path;<br><br>
+            
+                    for (const auto&amp; neighbor : graph[node]) {<br>
+                        if (find(path.begin(), path.end(), neighbor) == path.end()) {<br>
+                            vector&lt;string&gt; newPath = path;<br>
+                            newPath.push_back(neighbor);<br>
+                            q.push({neighbor, newPath});<br>
+                        }<br>
+                    }<br>
+                }<br>
+                return {};<br>
+            }<br><br>
+            
+            &lt;!-- Main function --&gt;<br>
+            int main() {<br>
+                AVLTree avlTree;<br><br>
+            
+                // Initializing AVL tree with traffic density values<br>
+                avlTree.insert("N", 50);<br>
+                avlTree.insert("S", 30);<br>
+                avlTree.insert("E", 40);<br>
+                avlTree.insert("W", 60);<br><br>
+            
+                // Update traffic density based on user input<br>
+                updateTrafficDensity(avlTree);<br><br>
+            
+                // Declare map for emergency vehicles presence at each direction<br>
+                map&lt;string, bool&gt; emergencyVehicles;<br><br>
+            
+                // Update emergency vehicles presence<br>
+                updateEmergencyVehicles(avlTree, emergencyVehicles);<br><br>
+            
+                // Calculate signal timings<br>
+                map&lt;string, int&gt; signalTimings = calculateSignalTimings(avlTree, emergencyVehicles);<br>
+            
+                cout << "\nDynamic Signal Timing and they open in the order (in seconds):" << endl;<br>
+                // Output directions in order of signal opening (N, S, W, E)<br>
+                vector&lt;string&gt; directions = {"N", "S", "E", "W"};<br><br>
+            
+                // Print directions in the correct order (emergency vehicles prioritized)<br>
+                for (const auto&amp; direction : signalTimings) {<br>
+                    cout << direction.first << ": " << direction.second << " seconds" << endl;<br>
+                }<br>
+            
+                return 0;<br>
+            }
+            </p>
+            
+  </div>
 </div>
 <script>
     function showTab(tabId) {
