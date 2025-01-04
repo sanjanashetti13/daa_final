@@ -368,14 +368,27 @@
     These SDGs provide a comprehensive framework for addressing urban traffic challenges sustainably, ensuring alignment with global goals for sustainable development.
   </p>
   <!-- Know More Button -->
-      <p align="justify">
-        The implementation phase of the project focuses on developing the technical infrastructure required for real-time traffic management, integrating IoT devices, smart sensors, and advanced algorithms for efficient traffic flow and emergency vehicle routing...
-      </p>
-    </div>
-  
+   </div>
+</div>
+<script>
+    function showTab(tabId) {
+        const tabs = document.querySelectorAll('.tab');
+        const sections = document.querySelectorAll('.content-section');
 
+        tabs.forEach(tab => {
+            tab.classList.remove('active'); 
+        });
 
+        sections.forEach(section => {
+            section.classList.remove('active'); 
+        });
 
-  </div>
+        const clickedTab = document.getElementById(tabId);
+        const clickedSection = document.getElementById(tabId); 
+
+        clickedTab.classList.add('active');
+        clickedSection.classList.add('active');
+    }
+</script>
 </body>
 </html>
