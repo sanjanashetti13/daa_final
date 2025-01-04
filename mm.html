@@ -1,3 +1,5 @@
+//Real 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -221,73 +223,163 @@
     }
   
     .know-more-btn:hover {
-      background-color: #343F50; /* Slightly lighter hover color */
+      background-color: #343F50; /* Slightly lighter on hover */
     }
   </style>
+  
+  <script>
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab');
+      const sections = document.querySelectorAll('.content-section');
+      tabs.forEach(tab => tab.classList.remove('active'));
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.querySelector(`.tab[data-target="${tabId}"]`).classList.add('active');
+    }
+  </script>
 </head>
 <body>
   <nav>
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="mm.html">About Project</a>
+      <a href="team.html">Team Details</a>
+    </div>
   </nav>
 
   <div class="container">
-    <h1>Course Project Phase III - Algorithms Lab</h1>
+    <h1>Course Project</h1>
+
     <div class="tab-container">
-      <button class="tab active" onclick="openTab('problem')">Problem Statement</button>
-      <button class="tab" onclick="openTab('business')">Business Cases</button>
-      <button class="tab" onclick="openTab('city')">City Plan</button>
-      <button class="tab" onclick="openTab('sdg')">SDG Rules</button>
-      <button class="tab" onclick="openTab('implementation')">Implementation</button>
+      <button class="tab active" data-target="problem-statement" onclick="showTab('problem-statement')">Problem Statement</button>
+      <button class="tab" data-target="business-cases" onclick="showTab('business-cases')">Business Cases</button>
+      <button class="tab" data-target="city-plan" onclick="showTab('city-plan')">City Plan</button>
+      <button class="tab" data-target="sdg-rules" onclick="showTab('sdg-rules')">SDG Rules</button>
+      <button class="tab" data-target="Implimentation" onclick="showTab('Implimentation')">Implimentation</button>
+
+
     </div>
-    
-    <div class="content-section active" id="problem">
-      <h2>Problem Statement</h2>
-      <p>Content for the Problem Statement.</p>
+
+    <div id="problem-statement" class="content-section active">
+      <h2>Problem Statement: Traffic Management</h2>
+      <p align="justify">
+        Urban mobility is adversely imp acted by persistent challenges such as traffic congestion, insufficient parking infrastructure, and delayed emergency response times. These inefficiencies not only disrupt daily commuting but also negatively affect economic productivity and the effectiveness of critical services. The development of an integrated and intelligent system capable of dynamically managing traffic, optimizing parking solutions, and prioritizing emergency response operations is imperative to enhance urban efficiency and improve the overall quality of life for residents.
+      </p>
     </div>
-    <div class="content-section" id="business">
-      <h2>Business Cases</h2>
-      <ul>
-        <li>Business Case 1</li>
-        <li>Business Case 2</li>
-      </ul>
+
+    <div id="business-cases" class="content-section">
+      <h2>Business Cases Identification</h2>
+      <table class="team-table">
+  <thead>
+    <tr>
+      <th>Sl. No.</th>
+      <th>Business Case</th>
+      <th>Description</th>
+      <th>Owner</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><a href="real-time-traffic.html">Real-time Traffic Monitoring</a></td>
+      <td>Collect, process, and store traffic data in real-time using IoT devices and sensors.</td>
+      <td>Ananya B P</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><a href="citizen-feedback.html">Citizen Feedback Processing</a></td>
+      <td>Collect, analyze, and act on citizen feedback regarding traffic issues.</td>
+      <td>Ria</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><a href="smart-traffic.html">Smart Traffic Signal Control</a></td>
+      <td>Dynamically adjust signal timings based on traffic flow and congestion.</td>
+      <td>Sanjana</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><a href="smart-parking.html">Smart Parking Systems</a></td>
+      <td>Use Trie to store and search for parking space availability in real time, providing instant updates.</td>
+      <td>Chinmayi K B</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><a href="emergency-routing.html">Emergency Vehicle Routing</a></td>
+      <td>Implement a 2-3 Tree to handle route optimization for emergency vehicles, ensuring minimal delay.</td>
+      <td>Ria and Sanjana</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><a href="ev-management.html">EV Charging Station Management</a></td>
+      <td>Locate and manage EV charging stations in the city.</td>
+      <td>Ananya and Chinmayi</td>
+    </tr>
+  </tbody>
+</table>
     </div>
-    <div class="content-section" id="city">
+
+    <div id="city-plan" class="content-section">
       <h2>City Plan</h2>
-      <p>Content for the City Plan.</p>
+      <img src="vayujiva.jpg" alt="City Plan Visualization" style="max-width: 100%; height: auto; margin-top: 15px; border-radius: 10px;">
     </div>
-    <div class="content-section" id="sdg">
-      <h2>SDG Rules</h2>
+
+    <div id="sdg-rules" class="content-section">
+  <h2>SDG Rules</h2>
+  <p align="justify">
+    The Sustainable Development Goals (SDGs) play a vital role in guiding the implementation of traffic management solutions. Each business case aligns with specific SDGs to promote sustainable urban development and efficient mobility solutions. Below are the SDGs associated with each business case:
+  </p>
+  <ul>
+    <li><strong>Real-time Traffic Monitoring:</strong>
       <ul>
-        <li>SDG Rule 1</li>
-        <li>SDG Rule 2</li>
+        <li><strong>SDG 9 - Industry, Innovation, and Infrastructure:</strong> Utilize data collected to improve infrastructure planning and maintenance, optimizing traffic flow and reducing congestion.</li>
+        <li><strong>SDG 11 - Sustainable Cities and Communities:</strong> Leverage data to identify and address traffic hotspots, improve road safety, and enhance urban mobility.</li>
       </ul>
-    </div>
-    <div class="content-section" id="implementation">
-      <h2>Implementation</h2>
-      <p>hcbedhb</p>
-    </div>
+    </li>
+    <li><strong>Citizen Feedback Processing:</strong>
+      <ul>
+        <li><strong>SDG 11 - Sustainable Cities and Communities:</strong> Establish transparent and accessible channels for citizen feedback, ensuring their voices are heard in decision-making processes related to traffic management.</li>
+        <li><strong>SDG 16 - Peace, Justice, and Strong Institutions:</strong> Promote participatory governance and ensure accountability in addressing citizen concerns.</li>
+      </ul>
+    </li>
+    <li><strong>Smart Traffic Signal Control:</strong>
+      <ul>
+        <li><strong>SDG 11 - Sustainable Cities and Communities:</strong> Optimize traffic signal timings to reduce congestion, improve fuel efficiency, and minimize emissions, contributing to cleaner air quality.</li>
+        <li><strong>SDG 7 - Affordable and Clean Energy:</strong> Promote energy-efficient transportation systems through optimized traffic flow.</li>
+      </ul>
+    </li>
+    <li><strong>Smart Parking Systems:</strong>
+      <ul>
+        <li><strong>SDG 11 - Sustainable Cities and Communities:</strong> Reduce traffic congestion and pollution by facilitating efficient parking management and encouraging the use of alternative modes of transport.</li>
+        <li><strong>SDG 12 - Responsible Consumption and Production:</strong> Minimize the environmental impact of parking by optimizing parking space utilization and reducing the need for excessive car ownership.</li>
+      </ul>
+    </li>
+    <li><strong>Emergency Vehicle Routing:</strong>
+      <ul>
+        <li><strong>SDG 3 - Good Health and Well-being:</strong> Ensure timely response to emergencies by optimizing routes for emergency vehicles, saving lives and minimizing suffering.</li>
+        <li><strong>SDG 11 - Sustainable Cities and Communities:</strong> Improve the efficiency and effectiveness of emergency services, enhancing the resilience of urban areas.</li>
+      </ul>
+    </li>
+    <li><strong>EV Charging Station Management:</strong>
+      <ul>
+        <li><strong>SDG 7 - Affordable and Clean Energy:</strong> Promote the adoption of electric vehicles by expanding the network of charging stations and ensuring their accessibility and reliability.</li>
+        <li><strong>SDG 13 - Climate Action:</strong> Contribute to the mitigation of climate change by supporting the transition to electric vehicles.</li>
+      </ul>
+    </li>
+  </ul>
+  <p align="justify">
+    These SDGs provide a comprehensive framework for addressing urban traffic challenges sustainably, ensuring alignment with global goals for sustainable development.
+  </p>
+  <!-- Know More Button -->
+<h2>Implimentation</h2>
+      <p align="justify">
+        Urban mobility is adversely imp acted by persistent challenges such as traffic congestion, insufficient parking infrastructure, and delayed emergency response times. These inefficiencies not only disrupt daily commuting but also negatively affect economic productivity and the effectiveness of critical services. The development of an integrated and intelligent system capable of dynamically managing traffic, optimizing parking solutions, and prioritizing emergency response operations is imperative to enhance urban efficiency and improve the overall quality of life for residents.
+      </p>
+
+       
+</div>
+
+
   </div>
-
-  <script>
-    function openTab(tabName) {
-      // Hide all content sections
-      let contentSections = document.querySelectorAll('.content-section');
-      contentSections.forEach(section => {
-        section.classList.remove('active');
-      });
-
-      // Remove 'active' class from all tabs
-      let tabs = document.querySelectorAll('.tab');
-      tabs.forEach(tab => {
-        tab.classList.remove('active');
-      });
-
-      // Show the clicked tab's content and set it as active
-      document.getElementById(tabName).classList.add('active');
-      document.querySelector(`button[onclick="openTab('${tabName}')"]`).classList.add('active');
-    }
-  </script>
 </body>
 </html>
